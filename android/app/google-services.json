@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "611771797229",
+    "project_id": "vacinaki-90af1",
+    "storage_bucket": "vacinaki-90af1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:611771797229:android:2c2ddf216d32626fb1c6e4",
+        "android_client_info": {
+          "package_name": "com.example.vacinaki"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "611771797229-vsi12ifn5vrtoad57ksq35tv3ue0a60b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDG05boEn5OXe-VYkbmEPtbK82B9ivAo6s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "611771797229-vsi12ifn5vrtoad57ksq35tv3ue0a60b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
