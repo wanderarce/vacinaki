@@ -24,5 +24,12 @@ samples, guidance on mobile development, and a full API reference.
  - Flutter: Flutter 3.3.0 • channel stable • https://github.com/flutter/flutter.git
  - Dart: Dart SDK version: 2.18.0 (stable) (Fri Aug 26 10:22:54 2022 +0000) on "windows_x64"
 
-### Pattern: Tripple Pattern
-  - flutter_triple: ^1.2.7+4
+### Dependencies
+ - cupertino_icons: ^1.0.5
+ - flutter_modular: ^5.0.3
+ - flutter_triple: ^1.2.7+4
+ - google_maps_flutter: ^2.2.0
+ - geolocator: ^9.0.2
+ - geocoding: ^2.0.5
+ - dio: ^4.0.6
+ - url_launcher: ^6.1.5
