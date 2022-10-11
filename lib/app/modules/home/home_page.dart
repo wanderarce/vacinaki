@@ -5,12 +5,12 @@ import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:vacinaki/app/entities/unities.dart';
 import 'package:vacinaki/app/services/call_service.dart';
+import 'package:vacinaki/app/services/maps_service.dart';
 
 import 'home_store.dart';
 
 class HomePage extends StatefulWidget {
-  final String title;
-  const HomePage({Key? key, this.title = 'Home'}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -23,8 +23,7 @@ class _HomePageState extends State<HomePage> {
       TextEditingController();
   final TextEditingController _addressTextEditingController =
       TextEditingController();
-  bool value = false;
-  late final Marker? _marker;
+
   @override
   void initState() {
     super.initState();
@@ -42,8 +41,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   late GoogleMapController mapController;
-
-  final LatLng _center = const LatLng(45.521563, -122.677433);
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -73,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                   height: 5,
                 ),
                 TextFormField(
-                  onChanged: _search,
+                  onChanged: _searchAddress,
                   controller: _addressTextEditingController,
                   decoration: const InputDecoration(
                       hintText: "Endereço", border: OutlineInputBorder()),
@@ -105,8 +102,19 @@ class _HomePageState extends State<HomePage> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           IconButton(
-                                              onPressed: () async {},
+                                              onPressed: () async {
+                                                if (data[index]?.latitude !=
+                                                        null &&
+                                                    data[index]?.longitude !=
+                                                        null) {
+                                                  await MapsService().launch(
+                                                      data[index]!.latitude!,
+                                                      data[index]!.longitude!);
+                                                }
+                                              },
                                               icon: const Icon(Icons.map)),
+                                          Text(
+                                              "${store.calculePosition(data[index]?.latitude, data[index]?.longitude)}"),
                                           IconButton(
                                               onPressed: () async {
                                                 if (data[index]?.phone !=
@@ -197,5 +205,9 @@ class _HomePageState extends State<HomePage> {
             "${placemark.street} ${placemark.name}, ${placemark.subLocality} - ${placemark.locality}, ${placemark.country}";
       });
     }
+  }
+
+  void _searchAddress(String address) async {
+    await store.findByAddress(address);
   }
 }

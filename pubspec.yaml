@@ -43,6 +43,7 @@ dependencies:
   geocoding: ^2.0.5
   dio: ^4.0.6
   url_launcher: ^6.1.5
+  maps_launcher: ^2.0.1
 
 dev_dependencies:
   flutter_test:

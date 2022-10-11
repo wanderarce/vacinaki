@@ -1,23 +1,16 @@
 import 'package:vacinaki/app/entities/inventory.dart';
-import 'package:vacinaki/app/fakers/local_vaccines_faker.dart';
+import 'package:vacinaki/app/services/unities_service.dart';
 
 import 'base_repository.dart';
 
 class InventoryRepository extends BaseRepository {
-  LocalVaccinesFaker faker = LocalVaccinesFaker();
-
+  final UnitiesService _unitiesService = UnitiesService();
   find() async {
     var response = await dio.get('inventories');
   }
 
   findByTerm(String term) async {
-    if (term.isEmpty) {
-      return faker.localVaccines;
-    } else {
-      return faker.localVaccines
-          .where((element) => compareElement(element, term))
-          .toList();
-    }
+    return _unitiesService.findByTerm(term);
   }
 
   compareElement(Inventory element, String term) {

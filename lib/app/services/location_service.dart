@@ -36,8 +36,13 @@ class LocationService {
     return null;
   }
 
-  getByLocation() async {
-    List<Location> locations =
-        await locationFromAddress("Gronausestraat 710, Enschede");
+  Future<List<Location>> getByAddress(String address) async {
+    List<Location> locations = await locationFromAddress(address);
+    return locations;
+  }
+
+  bearingBetween(startLatitude, startLongitude, endLatitude, endLongitude) {
+    return Geolocator.bearingBetween(
+        startLatitude, startLongitude, endLatitude, endLongitude);
   }
 }

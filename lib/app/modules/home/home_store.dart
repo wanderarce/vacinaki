@@ -1,3 +1,5 @@
+import 'dart:math' show cos, sqrt, asin;
+
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -46,5 +48,24 @@ class HomeStore extends NotifierStore<Exception, List<Unities>> {
 
   Future<Placemark?> getPlace(Position position) async {
     return await _locationService.getByCoordinates(position);
+  }
+
+  Future<List<Location>> findByAddress(String address) async {
+    return await _locationService.getByAddress(address);
+  }
+
+  Future<double> calculePosition(double? latitude, double? longitude) async {
+    double distance = await _coordinateDistance(
+        center!.latitude, center!.latitude, latitude, longitude);
+    return distance;
+  }
+
+  double _coordinateDistance(lat1, lon1, lat2, lon2) {
+    var p = 0.017453292519943295;
+    var c = cos;
+    var a = 0.5 -
+        c((lat2 - lat1) * p) / 2 +
+        c(lat1 * p) * c(lat2 * p) * (1 - c((lon2 - lon1) * p)) / 2;
+    return 12742 * asin(sqrt(a));
   }
 }

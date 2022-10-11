@@ -6,7 +6,7 @@ class VaccinesService {
   final VaccinesRepository _vaccinesRepository = VaccinesRepository();
 
   Future findByTerm(String term) async {
-    Response response = await _vaccinesRepository.findByTerm(term);
+    Response response = await _vaccinesRepository.find(term);
     List<Vaccine> vaccines = [];
     if (response.statusCode == 200) {
       vaccines =
